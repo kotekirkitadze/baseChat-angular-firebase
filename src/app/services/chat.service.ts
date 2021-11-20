@@ -1,7 +1,7 @@
 import { query } from '@angular/animations';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 import { ChatMessage } from '../models/chat-message.model';
 
@@ -48,7 +48,7 @@ export class ChatService {
       email: email
     })
 
-    console.log(this.chatMessages);
+    // console.log(this.chatMessages);
 
     // this.chatMessages.push({
     //   message: msg,
