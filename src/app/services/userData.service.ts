@@ -22,20 +22,24 @@ export class UserDataService {
     this.items =
       this.userCollections.valueChanges();
 
-    // this.currentUser$ = this.auth.authState.pipe(
-    //   switchMap((user) => {
-    //     // Logged ina
-    //     if (user) {
-    //       //value changes() returns collections as observable
-    //       return this.afs
-    //         .doc<any>(`users/${user?.uid}`)
-    //         .valueChanges();
-    //     } else {
-    //       // Logged out
-    //       return of(null);
-    //     }
-    //   })
-    // );
+    this.currentUser$ = this.auth.authState.pipe(
+      switchMap((user) => {
+        // Logged ina
+        if (user) {
+          //value changes() returns collections as observable
+          return this.afs
+            .doc<any>(`users/${user?.uid}`)
+            .valueChanges();
+        } else {
+          // Logged out
+          return of(null);
+        }
+      })
+    );
+  }
+
+  getUserData(): Observable<any> {
+    return this.currentUser$;
   }
 
   registerData(email: string, displayName: string, status: string, userId: string) {

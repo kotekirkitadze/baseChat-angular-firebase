@@ -2,8 +2,9 @@ import { query } from '@angular/animations';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { ChatMessage } from '../models/chat-message.model';
+import { UserDataService } from './userData.service';
 
 
 @Injectable({
@@ -14,19 +15,26 @@ export class ChatService {
   user: any;
   chatMessages: AngularFirestoreCollection<ChatMessage>;
   chatMessage: ChatMessage;
-  userName: string = 'kk';
+  userName: string;
 
   constructor(
     private db: AngularFirestore,
-    private afAuth: AngularFireAuth
+    private afAuth: AngularFireAuth,
+    private userDataService: UserDataService
   ) {
 
     this.afAuth.authState.subscribe(auth => {
-      // if (auth !== undefined && auth !== null) {
-      //   this.user = auth;
-      // }
+      if (auth !== undefined && auth !== null) {
+        this.user = auth;
+      }
+
+      this.getUser().subscribe(user => this.userName = user?.displayName)
     })
 
+  }
+
+  getUser() {
+    return this.userDataService.getUserData()
   }
 
   // $key?: string;
@@ -37,8 +45,8 @@ export class ChatService {
 
   sendMessage(msg: string) {
     const timestamp = this.getTimeStamp();
-    // const email = this.user.email;
-    const email = 'example@gmail.com'
+    const email = this.user.email;
+    // const email = 'example@gmail.com'
     this.chatMessages = this.getMessages();
 
     this.chatMessages.add({
