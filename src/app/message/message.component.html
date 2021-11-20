@@ -1,5 +1,13 @@
 <div class="messageContainer">
-  <p>{{chatMessage.userName}}</p>
-  <p>{{chatMessage.timeSent}}</p>
-  <p>{{chatMessage.message}}</p>
+   <div class="messageData">
+     <span class="sender">
+       {{chatMessage.userName}}
+     </span>
+     <span class="timestamp">
+       {{chatMessage.timeSent | date:'medium' }}
+     </span>
+   </div>
+   <div class="messageContent">
+     {{chatMessage.message}}
+   </div>
 </div>
