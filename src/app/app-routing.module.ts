@@ -8,7 +8,7 @@ import { SignupFormComponent } from './signup-form/signup-form.component';
 const ROUTES = [
   {
     path: '',
-    redirectTo: '/login',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
   {
@@ -21,6 +21,10 @@ const ROUTES = [
   },
   {
     path: 'chat',
+    component: ChatroomComponent,
+  },
+  {
+    path: '**',
     component: ChatroomComponent,
   },
 ];

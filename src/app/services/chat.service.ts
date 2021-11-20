@@ -1,9 +1,76 @@
+import { query } from '@angular/animations';
 import { Injectable } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { Observable } from 'rxjs';
+import { ChatMessage } from '../models/chat-message.model';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
 
-  constructor() { }
+  user: any;
+  chatMessages: AngularFirestoreCollection<ChatMessage>;
+  chatMessage: ChatMessage;
+  userName: string = 'kk';
+
+  constructor(
+    private db: AngularFirestore,
+    private afAuth: AngularFireAuth
+  ) {
+
+    this.afAuth.authState.subscribe(auth => {
+      // if (auth !== undefined && auth !== null) {
+      //   this.user = auth;
+      // }
+    })
+
+  }
+
+  // $key?: string;
+  // email?: string;
+  // userName?: string;
+  // message?: string;
+  // timeSent?: Date = new Date();
+
+  sendMessage(msg: string) {
+    const timestamp = this.getTimeStamp();
+    // const email = this.user.email;
+    const email = 'example@gmail.com'
+    this.chatMessages = this.getMessages();
+
+    this.chatMessages.add({
+      message: msg,
+      timeSent: timestamp,
+      userName: this.userName,
+      email: email
+    })
+
+    console.log(this.chatMessages);
+
+    // this.chatMessages.push({
+    //   message: msg,
+    //   timeSent: timestamp,
+    //   userName: this.userName,
+    //   email: email
+    // });
+  }
+
+  getTimeStamp() {
+    const now = new Date();
+    const date = now.getUTCFullYear() + '/' +
+      (now.getUTCMonth() + 1) + '/' +
+      now.getUTCDate();
+    const time = now.getUTCHours() + ':' +
+      now.getUTCMinutes() + ':' +
+      now.getUTCSeconds();
+
+    return (date + ' ' + time);
+  }
+
+  getMessages(): AngularFirestoreCollection<ChatMessage> {
+    return this.db.collection<ChatMessage>('messages')
+  }
 }
