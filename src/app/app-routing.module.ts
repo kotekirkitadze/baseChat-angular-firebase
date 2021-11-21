@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ChatroomComponent } from './chatroom/chatroom.component';
+import { ChatroomComponent } from './chat/chatroom/chatroom.component';
 import { LoginFormComponent } from './auth/login-form/login-form.component';
 import { SignupFormComponent } from './auth/signup-form/signup-form.component';
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { tap } from 'rxjs/operators';
-import { AuthService } from '../services/auth.service';
-import { UserDataService } from '../services/userData.service';
+import { AuthService } from '../../services/auth.service';
+import { UserDataService } from '../../services/userData.service';
 
 @Component({
   selector: 'app-user-list',
