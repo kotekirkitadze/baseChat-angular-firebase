@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { finalize } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
 import { UserDataService } from '../services/userData.service';
 
@@ -31,9 +32,14 @@ export class NavbarComponent implements OnInit {
 
 
   logout() {
-    this.authService.logout().subscribe(() => {
-      this.router.navigate(['login'])
-    })
+    this.userDataService.updateUser(this.authService.getCurrentUser()?.uid, 'offline')
+    setTimeout(() => {
+      this.authService.logout()
+
+        .subscribe(() => {
+          this.router.navigate(['login'])
+        })
+    }, 2000)
   }
 
 }

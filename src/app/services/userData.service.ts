@@ -56,4 +56,20 @@ export class UserDataService {
       });
   }
 
+  updateUser(uid, status) {
+    console.log('updating initialized....', status, uid)
+    const reneWedUser = { status };
+    this.afs.doc(
+      `users/${uid}`
+    ).update(reneWedUser);
+    console.log('updated')
+  }
+
+  // setUserStatus(currentUser, status: string) {
+  //   const path = `users/${currentUser}`;
+  //   const data = {
+  //     status: status
+  //   };
+  // }
+
 }

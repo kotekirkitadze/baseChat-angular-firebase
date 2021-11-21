@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { from, of } from 'rxjs';
 import { tap } from 'rxjs/operators'
+import { UserDataService } from './userData.service';
 
 @Injectable({
   providedIn: 'root'
@@ -25,25 +26,27 @@ export class AuthService {
 
 
   // onAuthStateChanged
-  private user: any;
-  private authState: any;
+  // private user: any;
+  // private authState: any;
 
-  get currentUserId(): string {
-    console.log(this.user.uid)
-    return this.user != null ? this.user.uid : '';
-  }
+  // get currentUserId(): string {
+  //   console.log(this.user.uid)
+  //   return this.user != null ? this.user.uid : '';
+  // }
 
-  get currentUserName(): string {
-    return this.user != null ? this.user.displayName : '';
-  }
+  // get currentUserName(): string {
+  //   return this.user != null ? this.user.displayName : '';
+  // }
 
   constructor(private fireAuth: AngularFireAuth,
+    private userInfoDataService: UserDataService,
     private db: AngularFirestore,
     private router: Router) {
     // this.user = fireAuth.user;
 
     fireAuth.onAuthStateChanged((user) => {
       this._userChange = user;
+      console.log('user Changes', this._userChange);
 
     });
   }
@@ -51,7 +54,7 @@ export class AuthService {
   signUp(email: string, password: string, displayName: string) {
     return from(this.fireAuth.createUserWithEmailAndPassword(email, password))
       .pipe(tap(user => {
-        this.authState = user;
+        // this.authState = user;
         const status = 'online';
 
       }))
@@ -68,19 +71,21 @@ export class AuthService {
   // }
 
   login(email: string, password: string) {
-    return of(this.fireAuth.signInWithEmailAndPassword(email, password))
+    return of(this.fireAuth.signInWithEmailAndPassword(email, password)).pipe(
+
+    )
     // .pipe(tap(d => {
     //   const status = 'online';
     //   // this.setUserStatus(email, status);
     // }))
   }
 
-  setUserStatus(email: string, status: string) {
-    const path = `users/${this.currentUserId}`;
-    const data = {
-      status: status
-    };
-  }
+  // setUserStatus(email: string, status: string) {
+  //   const path = `users/${this.currentUserId}`;
+  //   const data = {
+  //     status: status
+  //   };
+  // }
 
 
   logout() {
