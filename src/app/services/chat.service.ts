@@ -9,7 +9,6 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ChatService {
-
   user: any;
   chatMessages: AngularFirestoreCollection<ChatMessage>;
   chatMessage: ChatMessage;

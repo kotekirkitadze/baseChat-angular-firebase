@@ -1,30 +1,37 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ChatroomComponent } from './chat/chatroom/chatroom.component';
-import { LoginFormComponent } from './auth/login-form/login-form.component';
-import { SignupFormComponent } from './auth/signup-form/signup-form.component';
+import { AngularFireAuthGuard, redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/compat/auth-guard';
+
+const redirectLoggedInToItems = () =>
+  redirectLoggedInTo(['chat']);
+const redirectUnauthorizedToLogin = () =>
+  redirectUnauthorizedTo(['login']);
 
 
 const ROUTES = [
   {
     path: '',
-    redirectTo: 'login',
-    pathMatch: 'full',
-  },
-  {
-    path: 'signup',
-    component: SignupFormComponent,
-  },
-  {
-    path: 'login',
-    component: LoginFormComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: {
+      authGuardPipe: redirectLoggedInToItems,
+    },
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
     path: 'chat',
-    component: ChatroomComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: {
+      authGuardPipe: redirectUnauthorizedToLogin,
+    },
+    loadChildren: () => import('./chat/chat.module').then(m => m.ChatModule)
   },
   {
     path: '**',
+    canActivate: [AngularFireAuthGuard],
+    data: {
+      authGuardPipe: redirectUnauthorizedToLogin,
+    },
     component: ChatroomComponent,
   },
 ];

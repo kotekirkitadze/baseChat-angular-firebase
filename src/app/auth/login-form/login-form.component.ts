@@ -30,8 +30,9 @@ export class LoginFormComponent implements OnInit {
         }, 2000)
       }))
       .subscribe(() => {
-        this.router.navigate(['chat']);
-
+        setTimeout(() => {
+          this.router.navigate(['chat']);
+        }, 1000)
       });
   }
 

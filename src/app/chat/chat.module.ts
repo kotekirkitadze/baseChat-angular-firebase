@@ -7,6 +7,7 @@ import { MessageComponent } from '../message/message.component';
 import { FormsModule } from '@angular/forms';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserItemComponent } from './user-list/user-item/user-item.component';
+import { ChatRoutingModule } from './chat-routing.module';
 // import { UserItemComponent } from './user-list/user-item/user-item.componentt
 
 @NgModule({
@@ -20,7 +21,8 @@ import { UserItemComponent } from './user-list/user-item/user-item.component';
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    ChatRoutingModule
   ]
 })
 export class ChatModule { }

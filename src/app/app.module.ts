@@ -8,8 +8,6 @@ import { FormsModule } from '@angular/forms';
 
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment.prod';
-import { AuthModule } from './auth/auth.module';
-import { ChatModule } from './chat/chat.module';
 
 @NgModule({
   declarations: [
@@ -19,11 +17,8 @@ import { ChatModule } from './chat/chat.module';
   imports: [
     BrowserModule,
     FormsModule,
-    AuthModule,
-    ChatModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-
   ],
   providers: [],
   bootstrap: [AppComponent]
