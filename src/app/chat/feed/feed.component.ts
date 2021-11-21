@@ -1,5 +1,4 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
-import { map, tap } from 'rxjs/operators';
 import { ChatService } from '../../services/chat.service';
 
 @Component({
@@ -17,8 +16,6 @@ export class FeedComponent implements OnInit, OnChanges {
     this.chat.getMessagesForComponent().subscribe(
       msg => this.feed = msg
     );
-
-    // this.chat.getMessages().valueChanges().subscribe(console.log)
   }
 
   ngOnChanges() {

@@ -1,11 +1,9 @@
-import { query } from '@angular/animations';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
-import { Observable, of } from 'rxjs';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { ChatMessage } from '../models/chat-message.model';
 import { UserDataService } from './userData.service';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +25,6 @@ export class ChatService {
       if (auth !== undefined && auth !== null) {
         this.user = auth;
       }
-
       this.getUser().subscribe(user => this.userName = user?.displayName)
     })
 
@@ -41,16 +38,9 @@ export class ChatService {
     return this.userDataService.getAllUsers();
   }
 
-  // $key?: string;
-  // email?: string;
-  // userName?: string;
-  // message?: string;
-  // timeSent?: Date = new Date();
-
   sendMessage(msg: string) {
     const timestamp = this.getTimeStamp();
     const email = this.user.email;
-    // const email = 'example@gmail.com'
     this.chatMessages = this.getMessages();
 
     this.chatMessages.add({
@@ -59,14 +49,6 @@ export class ChatService {
       userName: this.userName,
       email: email
     })
-
-
-    // this.chatMessages.push({
-    //   message: msg,
-    //   timeSent: timestamp,
-    //   userName: this.userName,
-    //   email: email
-    // });
   }
 
   getTimeStamp() {
@@ -95,10 +77,3 @@ export class ChatService {
     )
   }
 }
-
-
-// (ref) =>
-//   ref.where(
-//     'uid',
-//     '==',
-//   ))

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreCollectionGroup, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
@@ -24,14 +24,11 @@ export class UserDataService {
 
     this.currentUser$ = this.auth.authState.pipe(
       switchMap((user) => {
-        // Logged ina
         if (user) {
-          //value changes() returns collections as observable
           return this.afs
             .doc<any>(`users/${user?.uid}`)
             .valueChanges();
         } else {
-          // Logged out
           return of(null);
         }
       })
@@ -62,12 +59,5 @@ export class UserDataService {
       `users/${uid}`
     ).update(reneWedUser);
   }
-
-  // setUserStatus(currentUser, status: string) {
-  //   const path = `users/${currentUser}`;
-  //   const data = {
-  //     status: status
-  //   };
-  // }
 
 }

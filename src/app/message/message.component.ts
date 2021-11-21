@@ -24,5 +24,4 @@ export class MessageComponent implements OnInit {
     return this.chatMessage.userName == this.currUserName;
   }
 
-
 }
