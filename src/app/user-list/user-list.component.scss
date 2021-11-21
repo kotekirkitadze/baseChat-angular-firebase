@@ -1,4 +1,25 @@
 .list{
+  padding-top: 10px;
   height:10%;
+  width: 200%;
+  display: block;
 
+ }
+
+ .user{
+  color: blanchedalmond;
+  padding: 15px;
+  border-radius: 10px;
+  width: 100%;
+  display: block;
+  text-align: center;
+  cursor: pointer;
+  background-color: #16142c;;
+  display: flex;
+  align-items: center;
 }
+
+ .status{
+   margin-right: 15px;
+   align-items: center;
+ }

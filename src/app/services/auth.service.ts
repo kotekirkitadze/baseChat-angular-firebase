@@ -65,11 +65,10 @@ export class AuthService {
 
   login(email: string, password: string) {
     return of(this.fireAuth.signInWithEmailAndPassword(email, password))
-      .pipe(tap(d => {
-        const status = 'online';
-        this.setUserStatus(email, status);
-        this.router.navigate(['chat'])
-      }))
+    // .pipe(tap(d => {
+    //   const status = 'online';
+    //   // this.setUserStatus(email, status);
+    // }))
   }
 
   setUserStatus(email: string, status: string) {
