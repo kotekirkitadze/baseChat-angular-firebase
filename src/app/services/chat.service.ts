@@ -5,7 +5,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { Observable, of } from 'rxjs';
 import { ChatMessage } from '../models/chat-message.model';
 import { UserDataService } from './userData.service';
-
+import { map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -83,8 +83,17 @@ export class ChatService {
   }
 
   getMessages(): AngularFirestoreCollection<ChatMessage> {
-
     return this.db.collection<ChatMessage>('messages')
+  }
+
+  getMessagesForComponent() {
+    return this.db.collection<ChatMessage>('messages').valueChanges().pipe(
+      map(data => {
+        return data.sort(function (a, b) {
+          return Number(new Date(a.timeSent)) - Number(new Date(b.timeSent));
+        })
+      }),
+    )
   }
 }
 

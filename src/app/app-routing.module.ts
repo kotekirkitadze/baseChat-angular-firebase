@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ChatroomComponent } from './chatroom/chatroom.component';
-import { LoginFormComponent } from './login-form/login-form.component';
-import { SignupFormComponent } from './signup-form/signup-form.component';
+import { LoginFormComponent } from './auth/login-form/login-form.component';
+import { SignupFormComponent } from './auth/signup-form/signup-form.component';
 
 
 const ROUTES = [

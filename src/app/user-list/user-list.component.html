@@ -1,6 +1,6 @@
-<div *ngFor="let user of users" class="list">
-  <div class="user">
-    <span class="status">A</span>
+<div class="list">
+  <div *ngFor="let user of users" class="user">
+    <div class="status"><span>3.</span></div>
     <app-user-item [user]="user"></app-user-item>
   </div>
 </div>

@@ -9,25 +9,19 @@ import { ChatService } from '../services/chat.service';
 })
 export class FeedComponent implements OnInit, OnChanges {
 
-  feed: any;
+  feed: any[];
 
   constructor(private chat: ChatService) { }
 
   ngOnInit(): void {
-    this.feed = this.chat.getMessages().valueChanges().pipe(
-      map(data => {
-        return data.sort(function (a, b) {
-          return Number(new Date(a.timeSent)) - Number(new Date(b.timeSent));
-        })
-      }),
-    )
+    this.chat.getMessagesForComponent().subscribe(
+      msg => this.feed = msg
+    );
+
     // this.chat.getMessages().valueChanges().subscribe(console.log)
   }
 
   ngOnChanges() {
-
-
-
   }
 
 }
