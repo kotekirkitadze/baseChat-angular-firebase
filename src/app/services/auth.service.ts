@@ -30,7 +30,11 @@ export class AuthService {
 
   get currentUserId(): string {
     console.log(this.user.uid)
-    return this.user != null ? this.user.uid : ''
+    return this.user != null ? this.user.uid : '';
+  }
+
+  get currentUserName(): string {
+    return this.user != null ? this.user.displayName : '';
   }
 
   constructor(private fireAuth: AngularFireAuth,

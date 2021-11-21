@@ -3,16 +3,16 @@
   <div id='heading'><a routerLink="/">baseChat</a></div>
   <div class="links">
     <span>
-      <a href="#" (click)="login()">Login</a>
+      <a routerLink="/login" *ngIf="!isLoggedIn">Login</a>
     </span>
     <span>
-      <a href="#" routerLink="/signup">Sign Up</a>
+      <a  routerLink="/signup" *ngIf="!isLoggedIn">Sign Up</a>
     </span>
     <span>
-      <span id='userEmail'>Hello, userName</span>
+      <span id='userEmail' *ngIf="isLoggedIn">Hello, {{currentUserName}}</span>
     </span>
     <span>
-      <a href="#" (click)="logout()">Logout</a>
+      <a (click)="logout()" *ngIf="isLoggedIn">Logout</a>
     </span>
   </div>
 </div>
