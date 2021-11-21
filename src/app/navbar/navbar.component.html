@@ -1,1 +1,18 @@
-<p>navbar works!</p>
+<div class="navBar">
+  <div id="logo"></div>
+  <div id='heading'><a routerLink="/">baseChat</a></div>
+  <div class="links">
+    <span>
+      <a href="#" (click)="login()">Login</a>
+    </span>
+    <span>
+      <a href="#" routerLink="/signup">Sign Up</a>
+    </span>
+    <span>
+      <span id='userEmail'>Hello, userName</span>
+    </span>
+    <span>
+      <a href="#" (click)="logout()">Logout</a>
+    </span>
+  </div>
+</div>

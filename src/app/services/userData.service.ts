@@ -42,6 +42,10 @@ export class UserDataService {
     return this.currentUser$;
   }
 
+  getAllUsers() {
+    return this.afs.collection<any>('users');
+  }
+
   registerData(email: string, displayName: string, status: string, userId: string) {
     this.userCollections
       .doc(userId)

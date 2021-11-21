@@ -37,6 +37,10 @@ export class ChatService {
     return this.userDataService.getUserData()
   }
 
+  getAllUsers() {
+    return this.userDataService.getAllUsers();
+  }
+
   // $key?: string;
   // email?: string;
   // userName?: string;

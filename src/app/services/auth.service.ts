@@ -78,4 +78,9 @@ export class AuthService {
       status: status
     };
   }
+
+
+  logout() {
+    return from(this.fireAuth.signOut());
+  }
 }
