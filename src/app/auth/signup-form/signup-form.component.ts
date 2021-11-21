@@ -32,7 +32,6 @@ export class SignupFormComponent {
       (err) => this.errorMsg = err
     )
 
-    // this.authService.setUserData(email, displayName, 'online', this.authService.currentUserId).subscribe(() => console.log('data added'))
   }
 
 }

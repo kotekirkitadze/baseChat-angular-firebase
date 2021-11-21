@@ -10,7 +10,6 @@ import { LoginFormComponent } from './auth/login-form/login-form.component';
 import { SignupFormComponent } from './auth/signup-form/signup-form.component';
 import { NavbarComponent } from './shell/navbar/navbar.component';
 import { UserListComponent } from './chat/user-list/user-list.component';
-import { UserItemComponent } from './chat/user-list/user-item/user-item.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 

@@ -60,7 +60,6 @@ export class ChatService {
       email: email
     })
 
-    // console.log(this.chatMessages);
 
     // this.chatMessages.push({
     //   message: msg,

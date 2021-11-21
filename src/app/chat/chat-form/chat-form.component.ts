@@ -20,6 +20,7 @@ export class ChatFormComponent implements OnInit {
   }
 
   send() {
+    console.log('content', this.message)
     this.chat.sendMessage(this.message);
     this.message = '';
   }

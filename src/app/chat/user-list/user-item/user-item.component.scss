@@ -1,0 +1,22 @@
+.statusOnline{
+  border: 3px solid rgb(85, 92, 83);
+    // border: 3px solid rgb(60, 233, 16);
+    display: inline-block;
+    background-color: rgb(12, 204, 12);
+    min-width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-left: -10px;
+    // margin: 10px 12px 0px 10px;
+}
+
+
+.statusOffline{
+    border: 3px solid rgb(85, 92, 83);
+    display: inline-block;
+    min-width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-left: -10px;
+    // margin: 10px 12px 0px 10px;
+}
