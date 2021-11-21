@@ -12,7 +12,6 @@ export class UserItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log('sasaqw', this.user)
   }
 
 }

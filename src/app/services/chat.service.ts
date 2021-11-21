@@ -83,6 +83,14 @@ export class ChatService {
   }
 
   getMessages(): AngularFirestoreCollection<ChatMessage> {
+
     return this.db.collection<ChatMessage>('messages')
   }
 }
+
+
+// (ref) =>
+//   ref.where(
+//     'uid',
+//     '==',
+//   ))

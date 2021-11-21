@@ -1,4 +1,5 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
+import { map, tap } from 'rxjs/operators';
 import { ChatService } from '../services/chat.service';
 
 @Component({
@@ -13,12 +14,19 @@ export class FeedComponent implements OnInit, OnChanges {
   constructor(private chat: ChatService) { }
 
   ngOnInit(): void {
-    this.feed = this.chat.getMessages().valueChanges()
+    this.feed = this.chat.getMessages().valueChanges().pipe(
+      map(data => {
+        return data.sort(function (a, b) {
+          return Number(new Date(a.timeSent)) - Number(new Date(b.timeSent));
+        })
+      }),
+    )
     // this.chat.getMessages().valueChanges().subscribe(console.log)
   }
 
   ngOnChanges() {
-    this.feed = this.chat.getMessages().valueChanges();
+
+
 
   }
 

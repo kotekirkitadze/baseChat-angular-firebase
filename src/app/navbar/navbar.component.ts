@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.userDataService.currentUser$.subscribe(user => {
       this.currentUserName = user?.displayName
-      console.log('axali auvtorizacia')
+
     })
   }
 
