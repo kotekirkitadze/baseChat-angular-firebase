@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { from, of } from 'rxjs';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  _userChange: any;
+  _userChange: User;
 
   isLoggedIn(): boolean {
     return !!this._userChange;
   }
 
-  getCurrentUser(): any {
-    console.log('user type', this._userChange)
+  getCurrentUser(): User {
     return !!this._userChange
       ? this._userChange
       : null;

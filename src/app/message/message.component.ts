@@ -16,12 +16,12 @@ export class MessageComponent implements OnInit {
 
   ngOnInit(): void {
     this.userInfoDataService.currentUser$.subscribe(
-      d => this.currUserName = d.displayName
+      d => this.currUserName = d?.displayName
     )
   }
 
   isOwnMessage() {
-    return this.chatMessage.userName == this.currUserName;
+    return this.chatMessage?.userName == this.currUserName;
   }
 
 }
