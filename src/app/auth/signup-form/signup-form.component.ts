@@ -24,7 +24,7 @@ export class SignupFormComponent {
     const email = this.email;
     const password = this.password;
     const displayName = this.displayName;
-    this.authService.signUp(email, password, displayName).subscribe(
+    this.authService.signUp(email, password).subscribe(
       () => {
         this.userDataService.registerData(email, displayName, 'online', this.authService.getCurrentUser()?.uid)
         this.router.navigate(['chat']);

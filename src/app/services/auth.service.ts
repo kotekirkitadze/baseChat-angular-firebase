@@ -13,6 +13,7 @@ export class AuthService {
   }
 
   getCurrentUser(): any {
+    console.log('user type', this._userChange)
     return !!this._userChange
       ? this._userChange
       : null;
@@ -24,7 +25,7 @@ export class AuthService {
     });
   }
 
-  signUp(email: string, password: string, displayName: string) {
+  signUp(email: string, password: string) {
     return from(this.fireAuth.createUserWithEmailAndPassword(email, password));
   }
 

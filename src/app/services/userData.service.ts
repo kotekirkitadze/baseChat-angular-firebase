@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { User } from '../models/user.model';
 
 @Injectable({ providedIn: 'root' })
 export class UserDataService {
@@ -35,12 +36,12 @@ export class UserDataService {
     );
   }
 
-  getUserData(): Observable<any> {
+  getUserData(): Observable<User> {
     return this.currentUser$;
   }
 
-  getAllUsers() {
-    return this.afs.collection<any>('users');
+  getAllUsers(): Observable<User[]> {
+    return this.afs.collection<User>('users').valueChanges();
   }
 
   registerData(email: string, displayName: string, status: string, userId: string) {

@@ -4,12 +4,14 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/comp
 import { ChatMessage } from '../models/chat-message.model';
 import { UserDataService } from './userData.service';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
-  user: any;
+  user: User;
   chatMessages: AngularFirestoreCollection<ChatMessage>;
   chatMessage: ChatMessage;
   userName: string;
@@ -29,15 +31,15 @@ export class ChatService {
 
   }
 
-  getUser() {
+  getUser(): Observable<User> {
     return this.userDataService.getUserData()
   }
 
-  getAllUsers() {
+  getAllUsers(): Observable<User[]> {
     return this.userDataService.getAllUsers();
   }
 
-  sendMessage(msg: string) {
+  sendMessage(msg: string): void {
     const timestamp = this.getTimeStamp();
     const email = this.user.email;
     this.chatMessages = this.getMessages();
@@ -66,7 +68,7 @@ export class ChatService {
     return this.db.collection<ChatMessage>('messages')
   }
 
-  getMessagesForComponent() {
+  getMessagesForComponent(): Observable<ChatMessage[]> {
     return this.db.collection<ChatMessage>('messages').valueChanges().pipe(
       map(data => {
         return data.sort(function (a, b) {

@@ -10,7 +10,7 @@ export const routes: Route[] = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'signin',
+    redirectTo: 'login',
   },
   {
     path: 'login',

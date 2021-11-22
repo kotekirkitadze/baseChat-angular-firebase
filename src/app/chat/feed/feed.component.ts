@@ -1,4 +1,5 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
+import { ChatMessage } from 'src/app/models/chat-message.model';
 import { ChatService } from '../../services/chat.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { ChatService } from '../../services/chat.service';
 })
 export class FeedComponent implements OnInit, OnChanges {
 
-  feed: any[];
+  feed: ChatMessage[];
 
   constructor(private chat: ChatService) { }
 
